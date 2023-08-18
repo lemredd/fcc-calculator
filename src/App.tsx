@@ -27,7 +27,7 @@ const num_buttons = [
 		"value": 4,
 	},
 	{
-		"id": "5",
+		"id": "five",
 		"value": 5,
 	},
 	{
@@ -53,6 +53,7 @@ function App(): ReactElement {
 	return (
 		<>
 			<button id="equals">=</button>
+			{num_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
 		</>
 	);
 }
