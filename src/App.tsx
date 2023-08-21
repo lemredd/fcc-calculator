@@ -68,15 +68,20 @@ const operator_buttons = [
 ];
 
 function App(): ReactElement {
+	const [input, set_input] = useState<string>("");
 
 	return (
 		<>
 			<div id="display">
-				<div id="input"></div>
+				<div id="input">{input}</div>
 				<div id="output"></div>
 			</div>
 			<button id="equals">=</button>
-			{num_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
+			{num_buttons.map(({ id, value }) => (
+				<button key={id} id={id}>
+					{value}
+				</button>
+			))}
 			{operator_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
 			<button id="decimal">.</button>
 			<button id="clear">C</button>
