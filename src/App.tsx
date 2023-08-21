@@ -74,6 +74,7 @@ function App(): ReactElement {
 		const { "innerText": btn_value } = event.target as HTMLButtonElement;
 		set_input(`${input}${btn_value}`);
 	}
+	const clear_input = (): void => set_input("0");
 
 	return (
 		<>
@@ -92,7 +93,7 @@ function App(): ReactElement {
 			))}
 			{operator_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
 			<button id="decimal">.</button>
-			<button id="clear">C</button>
+			<button id="clear" onClick={clear_input}>C</button>
 		</>
 	);
 }
