@@ -48,6 +48,25 @@ const num_buttons = [
 	},
 ] as const;
 
+const operator_buttons = [
+	{
+		"id": "add",
+		"value": "+"
+	},
+	{
+		"id": "subtract",
+		"value": "-"
+	},
+	{
+		"id": "multiply",
+		"value": "*"
+	},
+	{
+		"id": "divide",
+		"value": "/"
+	},
+];
+
 function App(): ReactElement {
 
 	return (
