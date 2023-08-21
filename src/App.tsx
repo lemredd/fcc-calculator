@@ -74,6 +74,8 @@ function App(): ReactElement {
 			<button id="equals">=</button>
 			{num_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
 			{operator_buttons.map(({ id, value }) => <button key={id} id={id}>{value}</button>)}
+			<button id="decimal">.</button>
+			<button id="clear">C</button>
 		</>
 	);
 }
