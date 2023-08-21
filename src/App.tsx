@@ -78,8 +78,7 @@ function App(): ReactElement {
 	return (
 		<>
 			<div id="display">
-				<div id="input">{input}</div>
-				<div id="output"></div>
+				{input}
 			</div>
 			<button id="equals">=</button>
 			{num_buttons.map(({ id, value }) => (
