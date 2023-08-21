@@ -70,6 +70,11 @@ const operator_buttons = [
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("");
 
+	function mutate_input(event: React.MouseEvent<HTMLButtonElement>): void {
+		const { "innerText": btn_value } = event.target as HTMLButtonElement;
+		set_input(`${input}${btn_value}`);
+	}
+
 	return (
 		<>
 			<div id="display">
@@ -78,7 +83,11 @@ function App(): ReactElement {
 			</div>
 			<button id="equals">=</button>
 			{num_buttons.map(({ id, value }) => (
-				<button key={id} id={id}>
+				<button
+					key={id}
+					id={id}
+					onClick={mutate_input}
+				>
 					{value}
 				</button>
 			))}
