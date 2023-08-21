@@ -68,11 +68,19 @@ const operator_buttons = [
 ];
 
 function App(): ReactElement {
-	const [input, set_input] = useState<string>("");
+	const [input, set_input] = useState<string>("0");
 
 	function mutate_input(event: React.MouseEvent<HTMLButtonElement>): void {
 		const { "innerText": btn_value } = event.target as HTMLButtonElement;
-		set_input(`${input}${btn_value}`);
+		const is_input_initial_state = input === "0";
+		const is_btn_value_zero = btn_value === "0";
+		const must_not_append = is_input_initial_state && is_btn_value_zero;
+		const is_appending_initially = is_input_initial_state && !is_btn_value_zero;
+		const can_append_continuously = !is_input_initial_state;
+
+		if (must_not_append) set_input("0");
+		if (is_appending_initially) set_input(`${btn_value}`);
+		if (can_append_continuously) set_input(`${input}${btn_value}`);
 	}
 	const clear_input = (): void => set_input("0");
 
