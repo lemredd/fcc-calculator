@@ -74,12 +74,19 @@ function App(): ReactElement {
 	function append_input(event: React.MouseEvent<HTMLButtonElement>): void {
 		const { "innerText": btn_value } = event.target as HTMLButtonElement;
 		const is_input_initial_state = input === "0";
+		const has_decimal = input.includes(".");
 		const is_btn_value_zero = btn_value === "0";
+		const is_btn_value_decimal = btn_value === ".";
 		const must_not_append = is_input_initial_state && is_btn_value_zero;
-		const is_appending_initially = is_input_initial_state && !is_btn_value_zero;
-		const can_append_continuously = !is_input_initial_state;
+		const must_append_decimal_once = !has_decimal && is_btn_value_decimal;
+		const is_appending_initially = is_input_initial_state
+			&& !is_btn_value_zero
+			&& !is_btn_value_decimal;
+		const can_append_continuously = !is_input_initial_state
+			&& !is_btn_value_decimal;
 
 		if (must_not_append) set_input("0");
+		if (must_append_decimal_once) set_input(`${input}.`);
 		if (is_appending_initially) set_input(`${btn_value}`);
 		if (can_append_continuously) set_input(`${input}${btn_value}`);
 	}
@@ -115,7 +122,7 @@ function App(): ReactElement {
 					{value}
 				</button>
 			))}
-			<button id="decimal">.</button>
+			<button id="decimal" onClick={append_input}>.</button>
 			<button id="clear" onClick={clear_input}>C</button>
 		</>
 	);
