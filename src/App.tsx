@@ -1,3 +1,4 @@
+import { evaluate } from "mathjs";
 import {
 	useState,
 	type ReactElement
@@ -83,13 +84,19 @@ function App(): ReactElement {
 		if (can_append_continuously) set_input(`${input}${btn_value}`);
 	}
 	const clear_input = (): void => set_input("0");
+	function evaluate_input(): void {
+		if (input === "0") return;
+
+		const evaluated_val = String(evaluate(input));
+		set_input(evaluated_val);
+	}
 
 	return (
 		<>
 			<div id="display">
 				{input}
 			</div>
-			<button id="equals">=</button>
+			<button id="equals" onClick={evaluate_input}>=</button>
 			{num_buttons.map(({ id, value }) => (
 				<button
 					key={id}
