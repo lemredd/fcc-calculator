@@ -70,7 +70,7 @@ const operator_buttons = [
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
 
-	function mutate_input(event: React.MouseEvent<HTMLButtonElement>): void {
+	function append_input(event: React.MouseEvent<HTMLButtonElement>): void {
 		const { "innerText": btn_value } = event.target as HTMLButtonElement;
 		const is_input_initial_state = input === "0";
 		const is_btn_value_zero = btn_value === "0";
@@ -94,7 +94,7 @@ function App(): ReactElement {
 				<button
 					key={id}
 					id={id}
-					onClick={mutate_input}
+					onClick={append_input}
 				>
 					{value}
 				</button>
@@ -103,7 +103,7 @@ function App(): ReactElement {
 				<button
 					key={id}
 					id={id}
-					onClick={mutate_input}
+					onClick={append_input}
 				>
 					{value}
 				</button>
