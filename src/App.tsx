@@ -79,6 +79,7 @@ function App(): ReactElement {
 		const is_btn_value_zero = btn_value === "0";
 		const is_btn_value_decimal = btn_value === ".";
 		const must_not_append = is_input_initial_state && is_btn_value_zero;
+		const is_appending_operation = operations.indexOf(btn_value as Operation) !== -1;
 		const is_appending_initially = is_input_initial_state
 			&& !is_btn_value_zero
 			&& !is_btn_value_decimal;
@@ -90,6 +91,13 @@ function App(): ReactElement {
 			const last_term = String(input.split(/[^\d\.?\d*]/g).pop());
 			const has_decimal = last_term.includes(".");
 			if (!has_decimal) set_input(`${input}.`);
+		}
+		else if (is_appending_operation) {
+			const last_character = String(input.split("").pop());
+			const is_last_character_operation = operations.indexOf(last_character as Operation) !== -1;
+			// TODO: consider negated integer multiplication (i.e. `5 * - 5 = -25`)
+			if (!is_last_character_operation) set_input(`${input}${btn_value}`);
+			else set_input(`${input.substring(0,input.length-1)}${btn_value}`);
 		}
 		else if (is_appending_initially) set_input(`${btn_value}`);
 		else if (can_append_continuously) set_input(`${input}${btn_value}`);
