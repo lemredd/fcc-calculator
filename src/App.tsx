@@ -66,7 +66,9 @@ const operator_buttons = [
 		"id": "divide",
 		"value": "/"
 	},
-];
+] as const;
+const operations = operator_buttons.map(btn => btn.value);
+type Operation = typeof operations[number];
 
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
