@@ -4,11 +4,11 @@ import {
 	type ReactElement
 } from "react";
 
+import type { Operation } from "./types";
+
 import { NUM_BUTTONS, OPERATOR_BUTTONS, OPERATIONS } from "./constants";
 
 import "./App.css";
-
-type Operation = typeof OPERATIONS[number];
 
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
