@@ -4,71 +4,11 @@ import {
 	type ReactElement
 } from "react";
 
+import { NUM_BUTTONS, OPERATOR_BUTTONS, OPERATIONS } from "./constants";
+
 import "./App.css";
 
-const num_buttons = [
-	{
-		"id": "zero",
-		"value": 0,
-	},
-	{
-		"id": "one",
-		"value": 1,
-	},
-	{
-		"id": "two",
-		"value": 2,
-	},
-	{
-		"id": "three",
-		"value": 3,
-	},
-	{
-		"id": "four",
-		"value": 4,
-	},
-	{
-		"id": "five",
-		"value": 5,
-	},
-	{
-		"id": "six",
-		"value": 6,
-	},
-	{
-		"id": "seven",
-		"value": 7,
-	},
-	{
-		"id": "eight",
-		"value": 8,
-	},
-	{
-		"id": "nine",
-		"value": 9,
-	},
-] as const;
-
-const operator_buttons = [
-	{
-		"id": "add",
-		"value": "+"
-	},
-	{
-		"id": "subtract",
-		"value": "-"
-	},
-	{
-		"id": "multiply",
-		"value": "*"
-	},
-	{
-		"id": "divide",
-		"value": "/"
-	},
-] as const;
-const operations = operator_buttons.map(btn => btn.value);
-type Operation = typeof operations[number];
+type Operation = typeof OPERATIONS[number];
 
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
@@ -79,7 +19,7 @@ function App(): ReactElement {
 		const is_btn_value_zero = btn_value === "0";
 		const is_btn_value_decimal = btn_value === ".";
 		const must_not_append = is_input_initial_state && is_btn_value_zero;
-		const is_appending_operation = operations.indexOf(btn_value as Operation) !== -1;
+		const is_appending_operation = OPERATIONS.indexOf(btn_value as Operation) !== -1;
 		const is_appending_initially = is_input_initial_state
 			&& !is_btn_value_zero
 			&& !is_btn_value_decimal;
@@ -94,7 +34,7 @@ function App(): ReactElement {
 		}
 		else if (is_appending_operation) {
 			const last_character = String(input.split("").pop());
-			const is_last_character_operation = operations.indexOf(last_character as Operation) !== -1;
+			const is_last_character_operation = OPERATIONS.indexOf(last_character as Operation) !== -1;
 
 			// Multiplication of negative numbers.
 			// TODO: This could be better...
@@ -122,7 +62,7 @@ function App(): ReactElement {
 				{input}
 			</div>
 			<button id="equals" onClick={evaluate_input}>=</button>
-			{num_buttons.map(({ id, value }) => (
+			{NUM_BUTTONS.map(({ id, value }) => (
 				<button
 					key={id}
 					id={id}
@@ -131,7 +71,7 @@ function App(): ReactElement {
 					{value}
 				</button>
 			))}
-			{operator_buttons.map(({ id, value }) => (
+			{OPERATOR_BUTTONS.map(({ id, value }) => (
 				<button
 					key={id}
 					id={id}

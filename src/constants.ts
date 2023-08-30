@@ -1,4 +1,4 @@
-export const num_buttons = [
+export const NUM_BUTTONS = [
 	{
 		"id": "zero",
 		"value": 0,
@@ -41,7 +41,7 @@ export const num_buttons = [
 	},
 ] as const;
 
-export const operator_buttons = [
+export const OPERATOR_BUTTONS = [
 	{
 		"id": "add",
 		"value": "+"
@@ -59,4 +59,4 @@ export const operator_buttons = [
 		"value": "/"
 	},
 ] as const;
-export const operations = operator_buttons.map(btn => btn.value);
+export const OPERATIONS = OPERATOR_BUTTONS.map(btn => btn.value);
