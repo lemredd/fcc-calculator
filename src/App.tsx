@@ -8,6 +8,8 @@ import type { Operation } from "./types";
 
 import { NUM_BUTTONS, OPERATOR_BUTTONS, OPERATIONS } from "./constants";
 
+import CalculatorButton from "./CalculatorButton";
+
 import "./App.css";
 
 function App(): ReactElement {
@@ -63,22 +65,20 @@ function App(): ReactElement {
 			</div>
 			<button id="equals" onClick={evaluate_input}>=</button>
 			{NUM_BUTTONS.map(({ id, value }) => (
-				<button
+				<CalculatorButton
 					key={id}
 					id={id}
+					value={value}
 					onClick={append_input}
-				>
-					{value}
-				</button>
+				/>
 			))}
 			{OPERATOR_BUTTONS.map(({ id, value }) => (
-				<button
+				<CalculatorButton
 					key={id}
 					id={id}
+					value={value}
 					onClick={append_input}
-				>
-					{value}
-				</button>
+				/>
 			))}
 			<button id="decimal" onClick={append_input}>.</button>
 			<button id="clear" onClick={clear_input}>C</button>

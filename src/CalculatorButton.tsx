@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 
 interface Props {
 	id: string
-	value: string
+	value: number | string
 	onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
