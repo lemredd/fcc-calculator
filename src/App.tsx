@@ -35,6 +35,12 @@ function condition_append(input: string, btn_value: string): Record<string, bool
 	};
 }
 
+function append_decimal(input: string, set_input: React.Dispatch<React.SetStateAction<string>>): void {
+	const last_term = String(input.split(/[^\d\.?\d*]/g).pop());
+	const has_decimal = last_term.includes(".");
+	if (!has_decimal) set_input(`${input}.`);
+}
+
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
 
@@ -43,11 +49,7 @@ function App(): ReactElement {
 		const conditions = condition_append(input, btn_value);
 
 		if (conditions.must_not_append) set_input("0");
-		else if (conditions.is_btn_value_decimal) {
-			const last_term = String(input.split(/[^\d\.?\d*]/g).pop());
-			const has_decimal = last_term.includes(".");
-			if (!has_decimal) set_input(`${input}.`);
-		}
+		else if (conditions.is_btn_value_decimal) append_decimal(input, set_input);
 		else if (conditions.is_appending_operation) {
 			const last_character = String(input.split("").pop());
 			const is_last_character_operation = OPERATIONS.indexOf(last_character as Operation) !== -1;
