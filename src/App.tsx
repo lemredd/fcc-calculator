@@ -41,6 +41,24 @@ function append_decimal(input: string, set_input: React.Dispatch<React.SetStateA
 	if (!has_decimal) set_input(`${input}.`);
 }
 
+function append_operation(
+	input: string,
+	btn_value: string,
+	set_input: React.Dispatch<React.SetStateAction<string>>
+): void {
+	const last_character = String(input.split("").pop());
+	const is_last_character_operation = OPERATIONS.indexOf(last_character as Operation) !== -1;
+
+	// Multiplication of negative numbers.
+	// TODO: This could be better...
+	const is_multiplying_to_negative_number = last_character === "*" &&  btn_value === "-";
+	const must_discard_negative_multiplication = input.endsWith("*-") && btn_value === "+";
+
+	if (!is_last_character_operation || is_multiplying_to_negative_number) set_input(`${input}${btn_value}`);
+	else if (must_discard_negative_multiplication) set_input(`${input.substring(0,input.length-2)}${btn_value}`);
+	else set_input(`${input.substring(0,input.length-1)}${btn_value}`);
+}
+
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
 
@@ -50,19 +68,7 @@ function App(): ReactElement {
 
 		if (conditions.must_not_append) set_input("0");
 		else if (conditions.is_btn_value_decimal) append_decimal(input, set_input);
-		else if (conditions.is_appending_operation) {
-			const last_character = String(input.split("").pop());
-			const is_last_character_operation = OPERATIONS.indexOf(last_character as Operation) !== -1;
-
-			// Multiplication of negative numbers.
-			// TODO: This could be better...
-			const is_multiplying_to_negative_number = last_character === "*" &&  btn_value === "-";
-			const must_discard_negative_multiplication = input.endsWith("*-") && btn_value === "+";
-
-			if (!is_last_character_operation || is_multiplying_to_negative_number) set_input(`${input}${btn_value}`);
-			else if (must_discard_negative_multiplication) set_input(`${input.substring(0,input.length-2)}${btn_value}`);
-			else set_input(`${input.substring(0,input.length-1)}${btn_value}`);
-		}
+		else if (conditions.is_appending_operation) append_operation(input, btn_value, set_input);
 		else if (conditions.is_appending_initially) set_input(`${btn_value}`);
 		else if (conditions.can_append_continuously) set_input(`${input}${btn_value}`);
 	}
