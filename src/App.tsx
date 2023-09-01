@@ -12,29 +12,43 @@ import CalculatorButton from "./CalculatorButton";
 
 import "./App.css";
 
+function condition_append(input: string, btn_value: string): Record<string, boolean> {
+	const is_input_initial_state = input === "0";
+	const is_btn_value_zero = btn_value === "0";
+	const is_btn_value_decimal = btn_value === ".";
+	const must_not_append = is_input_initial_state && is_btn_value_zero;
+	const is_appending_operation = OPERATIONS.indexOf(btn_value as Operation) !== -1;
+	const is_appending_initially = is_input_initial_state
+		&& !is_btn_value_zero
+		&& !is_btn_value_decimal;
+	const can_append_continuously = !is_input_initial_state
+		&& !is_btn_value_decimal;
+
+	return {
+		is_input_initial_state,
+		is_btn_value_zero,
+		is_btn_value_decimal,
+		must_not_append,
+		is_appending_operation,
+		is_appending_initially,
+		can_append_continuously
+	};
+}
+
 function App(): ReactElement {
 	const [input, set_input] = useState<string>("0");
 
 	function append_input(event: React.MouseEvent<HTMLButtonElement>): void {
 		const { "innerText": btn_value } = event.target as HTMLButtonElement;
-		const is_input_initial_state = input === "0";
-		const is_btn_value_zero = btn_value === "0";
-		const is_btn_value_decimal = btn_value === ".";
-		const must_not_append = is_input_initial_state && is_btn_value_zero;
-		const is_appending_operation = OPERATIONS.indexOf(btn_value as Operation) !== -1;
-		const is_appending_initially = is_input_initial_state
-			&& !is_btn_value_zero
-			&& !is_btn_value_decimal;
-		const can_append_continuously = !is_input_initial_state
-			&& !is_btn_value_decimal;
+		const conditions = condition_append(input, btn_value);
 
-		if (must_not_append) set_input("0");
-		else if (is_btn_value_decimal) {
+		if (conditions.must_not_append) set_input("0");
+		else if (conditions.is_btn_value_decimal) {
 			const last_term = String(input.split(/[^\d\.?\d*]/g).pop());
 			const has_decimal = last_term.includes(".");
 			if (!has_decimal) set_input(`${input}.`);
 		}
-		else if (is_appending_operation) {
+		else if (conditions.is_appending_operation) {
 			const last_character = String(input.split("").pop());
 			const is_last_character_operation = OPERATIONS.indexOf(last_character as Operation) !== -1;
 
@@ -47,8 +61,8 @@ function App(): ReactElement {
 			else if (must_discard_negative_multiplication) set_input(`${input.substring(0,input.length-2)}${btn_value}`);
 			else set_input(`${input.substring(0,input.length-1)}${btn_value}`);
 		}
-		else if (is_appending_initially) set_input(`${btn_value}`);
-		else if (can_append_continuously) set_input(`${input}${btn_value}`);
+		else if (conditions.is_appending_initially) set_input(`${btn_value}`);
+		else if (conditions.can_append_continuously) set_input(`${input}${btn_value}`);
 	}
 	const clear_input = (): void => set_input("0");
 	function evaluate_input(): void {
