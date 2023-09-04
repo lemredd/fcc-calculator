@@ -11,7 +11,7 @@
 		"num7 num8 num9 subtract"
 		"num4 num5 num6 add"
 		"num1 num2 num3 equals"
-		"zero zero decimal equals"
+		"num0 num0 decimal equals"
 	;
 }
 
@@ -35,5 +35,9 @@
 #zero { grid-area: num0; }
 #decimal { grid-area: decimal; }
 
+#add { grid-area: add; }
+#subtract { grid-area: subtract; }
+#multiply { grid-area: multiply; }
+#divide { grid-area: divide; }
 
 #clear { grid-area: clear; }
