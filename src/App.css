@@ -3,40 +3,20 @@
 	margin: 0 auto;
 	padding: 2rem;
 	text-align: center;
+
+	display: grid;
+	grid-template:
+		"display display display display"
+		"clear clear divide multiply"
+		"num7 num8 num9 subtract"
+		"num4 num5 num6 add"
+		"num1 num2 num3 equals"
+		"zero zero decimal equals"
+	;
 }
 
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-	filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	a:nth-of-type(2) .logo {
-		animation: logo-spin infinite 20s linear;
-	}
-}
 
-.card {
-	padding: 2em;
-}
-
-.read-the-docs {
-	color: #888;
-}
