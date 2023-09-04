@@ -23,5 +23,17 @@
 	grid-area: equals;
 }
 
+#one { grid-area: num1; }
+#two { grid-area: num2; }
+#three { grid-area: num3; }
+#four { grid-area: num4; }
+#five { grid-area: num5; }
+#six { grid-area: num6; }
+#seven { grid-area: num7; }
+#eight { grid-area: num8; }
+#nine { grid-area: num9; }
+#zero { grid-area: num0; }
+#decimal { grid-area: decimal; }
+
 
 #clear { grid-area: clear; }
