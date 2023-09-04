@@ -15,8 +15,13 @@
 	;
 }
 
+#display {
+	grid-area: display;
 }
 
+#equals {
+	grid-area: equals;
 }
 
 
+#clear { grid-area: clear; }
