@@ -23,8 +23,13 @@
 
 #equals {
 	grid-area: equals;
+	background-color: var(--primary);
+	color: white;
 }
 
+.numeric, #decimal {
+	background-color: var(--gray);
+}
 #one { grid-area: num1; }
 #two { grid-area: num2; }
 #three { grid-area: num3; }
@@ -37,9 +42,16 @@
 #zero { grid-area: num0; }
 #decimal { grid-area: decimal; }
 
+.operational {
+	background-color: var(--light-gray);
+}
 #add { grid-area: add; }
 #subtract { grid-area: subtract; }
 #multiply { grid-area: multiply; }
 #divide { grid-area: divide; }
 
-#clear { grid-area: clear; }
+#clear {
+	grid-area: clear;
+	background-color: var(--danger);
+	color: white;
+}
