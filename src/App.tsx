@@ -42,6 +42,7 @@ function App(): ReactElement {
 				<CalculatorButton
 					key={id}
 					id={id}
+					className="numeric"
 					value={value}
 					onClick={append_input}
 				/>
@@ -50,6 +51,7 @@ function App(): ReactElement {
 				<CalculatorButton
 					key={id}
 					id={id}
+					className="operational"
 					value={value}
 					onClick={append_input}
 				/>
