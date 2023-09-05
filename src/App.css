@@ -13,10 +13,12 @@
 		"num1 num2 num3 equals"
 		"num0 num0 decimal equals"
 	;
+	gap: 8px;
 }
 
 #display {
 	grid-area: display;
+	margin-bottom: .5rem;
 }
 
 #equals {
