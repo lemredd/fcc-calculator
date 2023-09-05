@@ -35,7 +35,7 @@ function App(): ReactElement {
 	return (
 		<>
 			<div id="display">
-				{input}
+				<h2>{input}</h2>
 			</div>
 			<button id="equals" onClick={evaluate_input}>=</button>
 			{NUM_BUTTONS.map(({ id, value }) => (
