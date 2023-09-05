@@ -1,11 +1,11 @@
 import { type ReactElement } from "react";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	id: string
 	value: number | string
 	onClick: React.MouseEventHandler<HTMLButtonElement>
 }
 
-export default function CalculatorButton({ id, value, onClick }: Props): ReactElement {
-	return <button id={id} onClick={onClick}>{value}</button>;
+export default function CalculatorButton({ id, value, onClick, ...attribs }: Props): ReactElement {
+	return <button id={id} onClick={onClick} {...attribs}>{value}</button>;
 }

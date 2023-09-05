@@ -35,13 +35,14 @@ function App(): ReactElement {
 	return (
 		<>
 			<div id="display">
-				{input}
+				<h2>{input}</h2>
 			</div>
 			<button id="equals" onClick={evaluate_input}>=</button>
 			{NUM_BUTTONS.map(({ id, value }) => (
 				<CalculatorButton
 					key={id}
 					id={id}
+					className="numeric"
 					value={value}
 					onClick={append_input}
 				/>
@@ -50,6 +51,7 @@ function App(): ReactElement {
 				<CalculatorButton
 					key={id}
 					id={id}
+					className="operational"
 					value={value}
 					onClick={append_input}
 				/>
